@@ -16,4 +16,4 @@ log/
 target/
 
 #Allure
-allure-reports/
+allure-results/
