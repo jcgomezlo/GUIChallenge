@@ -17,3 +17,6 @@ target/
 
 #Allure
 allure-results/
+
+#Drivers
+chromedriver.exe
