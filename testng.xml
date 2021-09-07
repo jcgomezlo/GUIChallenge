@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="API Challenge"  thread-count="1" >
+    <test name="Suit">
+        <parameter name="test-name" value="Test One"/>
+        <classes>
+            <class name="TestExample"></class>
+        </classes>
+    </test>
+</suite>
