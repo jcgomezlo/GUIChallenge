@@ -10,7 +10,7 @@ import pages.UserPage;
 import utils.DriverFactory;
 
 public class SearchTest extends Hooks {
-    private static final Logger logger = LogManager.getLogger(LoginTest.class);
+    private static final Logger logger = LogManager.getLogger(SearchTest.class);
 
     @Test
     public void searchValid() {

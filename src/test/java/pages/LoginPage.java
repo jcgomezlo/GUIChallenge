@@ -26,6 +26,8 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//div[@class='carton']//ul")
     private List<WebElement> listErrors;
 
+
+
     public LoginPage(WebDriver driver){
         super(driver);
         PageFactory.initElements(driver, this);
