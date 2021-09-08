@@ -3,6 +3,7 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.ActorPage;
 import pages.LandingPage;
 import pages.MoveListPage;
 import pages.MoviePage;
@@ -16,8 +17,9 @@ public class ActorTest extends Hooks {
         WebDriver driver = DriverFactory.getInstance().getDriver();
         LandingPage landingPage = new LandingPage(driver);
         MoveListPage moveListPage = landingPage.goToTopRatedMovies();
-        moveListPage.filterByGenre();
         MoviePage moviePage = moveListPage.goToAnyMovie();
-        Assert.assertTrue(moviePage.genreIncludes("Action"));
+        String movieTitle = moviePage.getTitle();
+        ActorPage actorPage = moviePage.goToAnyCastPage();
+        Assert.assertTrue(actorPage.hasParticipatedInMovie(movieTitle));
     }
 }

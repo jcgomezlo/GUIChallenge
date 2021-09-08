@@ -26,6 +26,6 @@ public class Hooks {
             Screenshot.captureScreenshot(DriverFactory.getInstance().getDriver(), result.getName());
 
         }
-        DriverFactory.getInstance().closeBrowser();
+//        DriverFactory.getInstance().closeBrowser();
     }
 }
