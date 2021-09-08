@@ -3,7 +3,9 @@ package utils;
 import org.openqa.selenium.WebDriver;
 
 public class DriverFactory {
+
     ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+
     private static DriverFactory instance = new DriverFactory();
 
     public static DriverFactory getInstance(){

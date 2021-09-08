@@ -17,7 +17,7 @@ public class Hooks {
         DriverFactory.getInstance().setDriver(BrowserFactory.getDriver("chrome"));
         WebDriver driver = DriverFactory.getInstance().getDriver();
         driver.manage().window().maximize();
-        driver.navigate().to("https://www.wikipedia.org/");
+        driver.navigate().to("https://www.themoviedb.org");
     }
 
     @AfterMethod
