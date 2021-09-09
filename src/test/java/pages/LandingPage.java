@@ -36,20 +36,21 @@ public class LandingPage extends BasePage {
 
     @Step("Go to login")
     public LoginPage goToLogin(){
-        goToLoginButton.click();
         logger.info("Going to login page ...");
+        goToLoginButton.click();
         return new LoginPage(driver);
     }
 
     @Step("Search a query")
     public void search(String query){
+        logger.info("Searching query " + query );
         searchBar.sendKeys(query);
         searchButton.click();
     }
 
     @Step("Go to top rated movies")
     public MoveListPage goToTopRatedMovies(){
-
+        logger.info("Going to top rated movies ...");
         Actions builder = new Actions(driver);
         builder.moveToElement(movieButton).perform();
         topRatedButton.click();

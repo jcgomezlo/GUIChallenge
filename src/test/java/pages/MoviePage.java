@@ -1,15 +1,19 @@
 package pages;
 
 import io.qameta.allure.Step;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utils.GenerateRandom;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MoviePage extends BasePage {
+    private static final Logger logger = LogManager.getLogger(MoviePage.class);
 
     @FindBy(xpath = "//span[@class='genres']/a")
     List<WebElement> genres;
@@ -25,14 +29,15 @@ public class MoviePage extends BasePage {
         PageFactory.initElements(webDriver,this);
     }
 
-    @Step("Check if genre is included in the movie")
-    public boolean genreIncludes(String genreName){
+
+    @Step("Get genres")
+    public List<String> getGenres(){
+        List<String> genresText = new ArrayList<>();
         for(WebElement genre : genres){
-            if(genre.getText().equals(genreName)){
-                return true;
-            }
+            genresText.add(genre.getText());
         }
-        return false;
+        logger.info("Genres found: " + genresText);
+        return genresText;
     }
 
     @Step("Go to actor page")
@@ -42,7 +47,7 @@ public class MoviePage extends BasePage {
     }
 
     public ActorPage goToAnyCastPage(){
-        return goToCastPage(GenerateRandom.generateRandomNumber(0,cast.size()-1));
+        return goToCastPage(GenerateRandom.generateRandomNumber(0,3));
     }
 
     @Step("Check title")

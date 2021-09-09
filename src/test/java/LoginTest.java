@@ -1,6 +1,6 @@
-import dataproviders.Hooks;
 import dataproviders.LoginDataProvider;
 import entities.LoginUtils;
+import io.qameta.allure.Feature;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 import org.openqa.selenium.WebDriver;
@@ -10,12 +10,14 @@ import pages.LandingPage;
 import pages.LoginPage;
 import pages.UserPage;
 import utils.DriverFactory;
-
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
 
 public class LoginTest extends LoginDataProvider {
 
     private static final Logger logger = LogManager.getLogger(LoginTest.class);
-    
+
+    @Feature("Login")
     @Test(dataProvider = "ValidCredentials")
     public void SuccessfulLogin(String username, String password) {
         logger.info("Successful Login test initiated ..");
@@ -24,11 +26,11 @@ public class LoginTest extends LoginDataProvider {
         WebDriver driver = DriverFactory.getInstance().getDriver();
         LandingPage landingPage = new LandingPage(driver);
         LoginPage loginPage = landingPage.goToLogin();
-        loginPage.login(username,password);
-        UserPage userPage = new UserPage(driver);
-        Assert.assertEquals(userPage.getUserTitle(),username);
+        UserPage userPage = loginPage.login(username,password);
+        assertThat(userPage.getUserTitle(),equalTo(username));
     }
 
+    @Feature("Filter")
     @Test(dataProvider = "InvalidCredentials")
     public void FailedLogin(String username, String password){
         logger.info("Failed Login test initiated ..");
@@ -39,8 +41,8 @@ public class LoginTest extends LoginDataProvider {
         LandingPage landingPage = new LandingPage(driver);
         LoginPage loginPage = landingPage.goToLogin();
         loginPage.login(username,password);
-        Assert.assertEquals(loginPage.getErrorColor(), LoginUtils.RGB_RED);
-        Assert.assertEquals(loginPage.getNumberOfErrorMessages(), 2);
+        assertThat(loginPage.getErrorColor(),equalTo(LoginUtils.RGB_RED));
+        assertThat(loginPage.getNumberOfErrorMessages(),equalTo(2));
     }
 
 

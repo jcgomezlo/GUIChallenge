@@ -15,6 +15,7 @@
 log/
 target/
 Screenshots/
+data/~$data.xlsx
 
 #Allure
 allure-results/

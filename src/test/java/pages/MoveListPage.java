@@ -1,6 +1,8 @@
 package pages;
 
 import io.qameta.allure.Step;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -23,6 +25,8 @@ import static utils.Utilities.getDatesFromText;
 import static utils.Utilities.isSorted;
 
 public class MoveListPage extends BasePage{
+
+    private static final Logger logger = LogManager.getLogger(MoveListPage.class);
 
     @FindBy(xpath = "(//div[@class='content']/div/div[@class='filter_panel card closed'])[1]")
     WebElement filtersButton;
@@ -57,26 +61,33 @@ public class MoveListPage extends BasePage{
         driver.findElement(asd);
     }
 
+    private void clickGenreFilterButton(String genre){
+        By btn = By.xpath("//a[normalize-space()='"+genre+"']");
+        driver.findElement(btn).click();
+    }
+
     @Step("Filter results by some parameter")
-    public void filterByGenre(){
+    public void filterByGenre(String genre){
+        logger.info("Started filter by genre " + genre);
         filtersButton.click();
-        actionFilterButton.click();
+        clickGenreFilterButton(genre);
         searchFilterButton.click();
         waitForSearch();
     }
 
     @Step("Go to movie page")
     public MoviePage goToMovie(int number){
+        logger.info("Going to movie page");
         filterResult.get(number).click();
         return new MoviePage(driver);
     }
 
     public MoviePage goToAnyMovie(){
-        return goToMovie(GenerateRandom.generateRandomNumber(0,filterResult.size()-1));
+        return goToMovie(GenerateRandom.generateRandomNumber(0,3));
     }
 
-    @Step("Apply filter to results")
-    public void applyFilter(String query){
+    @Step("click sort")
+    public void clickSort(String query){
         sortByButton.click();
         By element = By.xpath("//li[normalize-space()='"+query+"']");
         driver.findElement(element).click();
@@ -84,17 +95,20 @@ public class MoveListPage extends BasePage{
 
     @Step("Sort results by some filter")
     public void sortBy(String query) {
-        applyFilter(query);
+        logger.info("Started sort  " + query);
+        clickSort(query);
         searchSmallButton.click();
         waitForSearch();
     }
 
     @Step("Check if dates are in ascending order")
-    public boolean datesAreInAscendingOrder(int numberOfDates){
+    public boolean datesAreInAscendingOrder(String numberOfDates){
+        logger.info("Getting dates ...");
         By element = By.xpath("(//div[@class='card style_1']//p)[position() <= "+ numberOfDates +"]");
         List<WebElement> datesElement =  driver.findElements(element);
-        System.out.println(datesElement.size());
-        return isSorted(getDatesFromText(datesElement));
+        List<LocalDate> dates = getDatesFromText(datesElement);
+        logger.info("Dates: " + dates);
+        return isSorted(dates);
     }
 
 

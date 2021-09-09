@@ -38,11 +38,12 @@ public class LoginPage extends BasePage {
     }
 
     @Step("Authenticate credentials")
-    public void login(String username, String password){
+    public UserPage login(String username, String password){
         usernameInput.sendKeys(username);
         passwordInput.sendKeys(password);
         loginButton.click();
         logger.info("Login fields filled and submit button clicked");
+        return new UserPage(driver);
     }
 
     @Step("Check error color")
@@ -58,4 +59,6 @@ public class LoginPage extends BasePage {
         logger.info("Number of error messages " + numberErrors );
         return numberErrors;
     }
+
+
 }
