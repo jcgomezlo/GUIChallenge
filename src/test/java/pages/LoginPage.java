@@ -24,10 +24,10 @@ public class LoginPage extends BasePage {
     @FindBy(id = "login_button")
     private WebElement loginButton;
 
-    @FindBy(xpath = "//h2[@class='background_color red']")
+    @FindBy(css = "h2[class='background_color red']")
     private WebElement errorMessage;
 
-    @FindBy(xpath = "//div[@class='carton']//ul")
+    @FindBy(css = "div.carton ul")
     private List<WebElement> listErrors;
 
 

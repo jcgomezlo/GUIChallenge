@@ -13,6 +13,7 @@ import org.testng.annotations.BeforeMethod;
 import utils.BrowserFactory;
 import utils.DriverFactory;
 import utils.Utilities;
+import utils.reader.PropertiesReader;
 
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
@@ -21,13 +22,15 @@ import java.util.concurrent.TimeUnit;
 
 public class Hooks {
 
+    private static final PropertiesReader propertiesReader = new PropertiesReader("src/main/resources/config.properties");
+
 
     @BeforeMethod
     public void setup(){
-        DriverFactory.getInstance().setDriver(BrowserFactory.getDriver("chrome"));
+        DriverFactory.getInstance().setDriver(BrowserFactory.getDriver(propertiesReader.getValue("browser")));
         WebDriver driver = DriverFactory.getInstance().getDriver();
         driver.manage().window().maximize();
-        driver.navigate().to("https://www.themoviedb.org");
+        driver.navigate().to(propertiesReader.getValue("url"));
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 

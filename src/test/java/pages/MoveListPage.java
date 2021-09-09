@@ -28,27 +28,20 @@ public class MoveListPage extends BasePage{
 
     private static final Logger logger = LogManager.getLogger(MoveListPage.class);
 
-    @FindBy(xpath = "(//div[@class='content']/div/div[@class='filter_panel card closed'])[1]")
+    @FindBy(css = "div[class *= 'filter_panel card']:nth-child(2)")
     WebElement filtersButton;
 
-    @FindBy(xpath = "//a[normalize-space()='Action']")
-    WebElement actionFilterButton;
-
-    @FindBy(xpath = "//div[@id='page_1']/div")
+    @FindBy(css = "div#page_1 div[class='card style_1']")
     List<WebElement> filterResult;
 
-    @FindBy(xpath = "//span[@class='k-widget k-dropdown kendo_dropdown full_width font_size_1']")
+    @FindBy(css = "div[class='filter_panel card'] > div.filter > span")
     WebElement sortByButton;
 
-    @FindBy(xpath = "//div[@class='apply full background_color light_blue enabled fixed']//a[@class='no_click load_more'][normalize-space()='Search']")
+    @FindBy(css = "div[class *= 'full'] > p.load_more > a")
     WebElement searchFilterButton;
 
-    @FindBy(xpath = "//div[@class='apply small background_color light_blue enabled']//a[@class='no_click load_more'][normalize-space()='Search']")
+    @FindBy(css = "div.content div[class *= 'small'] > p.load_more > a")
     WebElement searchSmallButton;
-
-    @FindBy(xpath = "//div[@class='card style_1']//p")
-    List<WebElement> dates;
-
 
 
     public MoveListPage(WebDriver webDriver) {
@@ -57,12 +50,12 @@ public class MoveListPage extends BasePage{
     }
 
     private void waitForSearch(){
-        By asd = By.xpath("//div[@class='apply small background_color light_blue disabled']//a[@class='no_click load_more'][normalize-space()='Search']");
+        By asd = By.cssSelector("div[class *= 'disabled'] a");
         driver.findElement(asd);
     }
 
     private void clickGenreFilterButton(String genre){
-        By btn = By.xpath("//a[normalize-space()='"+genre+"']");
+        By btn = By.cssSelector("ul#with_genres li:first-child a");
         driver.findElement(btn).click();
     }
 
