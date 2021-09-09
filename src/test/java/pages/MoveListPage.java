@@ -55,7 +55,7 @@ public class MoveListPage extends BasePage{
     }
 
     private void clickGenreFilterButton(String genre){
-        By btn = By.xpath("//a[normalize-space()='"+genre+"']");
+        By btn = By.cssSelector("ul#with_genres li:first-child a");
         driver.findElement(btn).click();
     }
 
