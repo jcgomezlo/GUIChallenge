@@ -1,11 +1,11 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import utils.Screenshot;
 
 import java.util.List;
 
@@ -33,6 +33,7 @@ public class LoginPage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
+    @Step("Authenticate credentials")
     public void login(String username, String password){
         usernameInput.sendKeys(username);
         passwordInput.sendKeys(password);
@@ -40,10 +41,12 @@ public class LoginPage extends BasePage {
         WebDriverWait wait = new WebDriverWait(driver, 10);
     }
 
+    @Step("Check error color")
     public String getErrorColor() {
         return errorMessage.getCssValue("background-color");
     }
 
+    @Step("Check number of error messages")
     public int getNumberOfErrorMessages() {
         return listErrors.size() + 1;
     }

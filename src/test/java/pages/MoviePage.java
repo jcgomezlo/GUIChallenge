@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -24,6 +25,7 @@ public class MoviePage extends BasePage {
         PageFactory.initElements(webDriver,this);
     }
 
+    @Step("Check if genre is included in the movie")
     public boolean genreIncludes(String genreName){
         for(WebElement genre : genres){
             if(genre.getText().equals(genreName)){
@@ -33,6 +35,7 @@ public class MoviePage extends BasePage {
         return false;
     }
 
+    @Step("Go to actor page")
     public ActorPage goToCastPage(int number){
         cast.get(number).click();
         return new ActorPage(driver);
@@ -42,6 +45,7 @@ public class MoviePage extends BasePage {
         return goToCastPage(GenerateRandom.generateRandomNumber(0,cast.size()-1));
     }
 
+    @Step("Check title")
     public String getTitle(){
         return title.getText();
     }

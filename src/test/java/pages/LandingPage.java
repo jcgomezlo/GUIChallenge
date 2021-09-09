@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -29,16 +30,19 @@ public class LandingPage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
+    @Step("Go to login")
     public LoginPage goToLogin(){
         goToLoginButton.click();
         return new LoginPage(driver);
     }
 
+    @Step("Search a query")
     public void search(String query){
         searchBar.sendKeys(query);
         searchButton.click();
     }
 
+    @Step("Go to top rated movies")
     public MoveListPage goToTopRatedMovies(){
 
         Actions builder = new Actions(driver);

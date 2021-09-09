@@ -8,6 +8,8 @@ import pages.MoveListPage;
 import pages.MoviePage;
 import utils.DriverFactory;
 
+import java.util.concurrent.TimeUnit;
+
 public class FilterTest extends Hooks {
     private static final Logger logger = LogManager.getLogger(FilterTest.class);
 
@@ -19,5 +21,14 @@ public class FilterTest extends Hooks {
         moveListPage.filterByGenre();
         MoviePage moviePage = moveListPage.goToAnyMovie();
         Assert.assertTrue(moviePage.genreIncludes("Action"));
+    }
+
+    @Test
+    public void sortByDatesAscending() {
+        WebDriver driver = DriverFactory.getInstance().getDriver();
+        LandingPage landingPage = new LandingPage(driver);
+        MoveListPage moveListPage = landingPage.goToTopRatedMovies();
+        moveListPage.sortBy("Release Date Ascending");
+        Assert.assertTrue(moveListPage.datesAreInAscendingOrder(5));
     }
 }

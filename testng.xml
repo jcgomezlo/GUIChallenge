@@ -3,8 +3,7 @@
 <suite name="API Challenge"  parallel="methods" thread-count="3">
     <test name="Suit">
         <classes>
-            <class name="LoginTest"></class>
-            <class name="SearchTest"></class>
+            <class name="ActorTest"></class>
         </classes>
     </test>
 </suite>

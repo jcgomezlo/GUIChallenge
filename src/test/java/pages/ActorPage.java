@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,6 +18,7 @@ public class ActorPage extends BasePage{
         PageFactory.initElements(webDriver,this);
     }
 
+    @Step("Check if actor has participated in a movie")
     public boolean hasParticipatedInMovie(String movieName){
         for(WebElement movie : movies){
             if(movie.getText().equals(movieName)){

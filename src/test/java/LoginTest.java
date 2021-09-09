@@ -47,16 +47,16 @@ public class LoginTest extends Hooks {
         Assert.assertEquals(userPage.getUserTitle(),"juankg214");
     }
 
-    @Test
-    public void loginInvalid() throws InterruptedException {
-        WebDriver driver = DriverFactory.getInstance().getDriver();
-        LandingPage landingPage = new LandingPage(driver);
-        LoginPage loginPage = landingPage.goToLogin();
-        loginPage.login("juankg215","lapiz453");
-        Thread.sleep(1000);
-        Assert.assertEquals(loginPage.getErrorColor(), LoginUtils.RGB_RED);
-        Assert.assertEquals(loginPage.getNumberOfErrorMessages(), 2);
-    }
+//    @Test
+//    public void loginInvalid() throws InterruptedException {
+//        WebDriver driver = DriverFactory.getInstance().getDriver();
+//        LandingPage landingPage = new LandingPage(driver);
+//        LoginPage loginPage = landingPage.goToLogin();
+//        loginPage.login("juankg215","lapiz453");
+//        Thread.sleep(1000);
+//        Assert.assertEquals(loginPage.getErrorColor(), LoginUtils.RGB_RED);
+//        Assert.assertEquals(loginPage.getNumberOfErrorMessages(), 2);
+//    }
 
 
 }
