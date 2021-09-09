@@ -26,8 +26,5 @@ public class ActorTest extends Hooks {
         Assert.assertTrue(actorPage.hasParticipatedInMovie(movieTitle));
     }
 
-    @Test
-    public void tests(){
-        logger.info("Started test validateActingTimeLine");
-    }
+
 }

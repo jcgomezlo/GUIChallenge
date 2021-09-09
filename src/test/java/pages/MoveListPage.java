@@ -57,10 +57,15 @@ public class MoveListPage extends BasePage{
         driver.findElement(asd);
     }
 
+    private void clickGenreFilterButton(String genre){
+        By btn = By.xpath("//a[normalize-space()='"+genre+"']");
+        driver.findElement(btn).click();
+    }
+
     @Step("Filter results by some parameter")
-    public void filterByGenre(){
+    public void filterByGenre(String genre){
         filtersButton.click();
-        actionFilterButton.click();
+        clickGenreFilterButton(genre);
         searchFilterButton.click();
         waitForSearch();
     }
@@ -72,11 +77,11 @@ public class MoveListPage extends BasePage{
     }
 
     public MoviePage goToAnyMovie(){
-        return goToMovie(GenerateRandom.generateRandomNumber(0,filterResult.size()-1));
+        return goToMovie(GenerateRandom.generateRandomNumber(0,3));
     }
 
-    @Step("Apply filter to results")
-    public void applyFilter(String query){
+    @Step("click sort")
+    public void clickSort(String query){
         sortByButton.click();
         By element = By.xpath("//li[normalize-space()='"+query+"']");
         driver.findElement(element).click();
@@ -84,13 +89,13 @@ public class MoveListPage extends BasePage{
 
     @Step("Sort results by some filter")
     public void sortBy(String query) {
-        applyFilter(query);
+        clickSort(query);
         searchSmallButton.click();
         waitForSearch();
     }
 
     @Step("Check if dates are in ascending order")
-    public boolean datesAreInAscendingOrder(int numberOfDates){
+    public boolean datesAreInAscendingOrder(String numberOfDates){
         By element = By.xpath("(//div[@class='card style_1']//p)[position() <= "+ numberOfDates +"]");
         List<WebElement> datesElement =  driver.findElements(element);
         System.out.println(datesElement.size());

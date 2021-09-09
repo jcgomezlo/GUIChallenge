@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="API Challenge"  parallel="methods" thread-count="3">
+<suite name="API Challenge"  parallel="methods" thread-count="5">
     <test name="Suit">
         <classes>
+            <class name="LoginTest"></class>
+            <class name="SearchTest"></class>
+            <class name="FilterTest"></class>
             <class name="ActorTest"></class>
         </classes>
     </test>
