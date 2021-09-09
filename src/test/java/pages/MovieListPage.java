@@ -8,25 +8,18 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.GenerateRandom;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
-import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
 
-import static com.google.common.collect.Iterables.isEmpty;
 import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
 import static utils.Utilities.getDatesFromText;
 import static utils.Utilities.isSorted;
 
-public class MoveListPage extends BasePage{
+public class MovieListPage extends BasePage{
 
-    private static final Logger logger = LogManager.getLogger(MoveListPage.class);
+    private static final Logger logger = LogManager.getLogger(MovieListPage.class);
 
     @FindBy(css = "div[class *= 'filter_panel card']:nth-child(2)")
     WebElement filtersButton;
@@ -44,7 +37,7 @@ public class MoveListPage extends BasePage{
     WebElement searchSmallButton;
 
 
-    public MoveListPage(WebDriver webDriver) {
+    public MovieListPage(WebDriver webDriver) {
         super(webDriver);
         PageFactory.initElements(webDriver,this);
     }

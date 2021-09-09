@@ -1,13 +1,11 @@
 import dataproviders.FilterDataProvider;
-import dataproviders.Hooks;
 import io.qameta.allure.Feature;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.LandingPage;
-import pages.MoveListPage;
+import pages.MovieListPage;
 import pages.MoviePage;
 import utils.DriverFactory;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -23,8 +21,7 @@ public class FilterTest extends FilterDataProvider {
         logger.info("Genre: " + genre);
 
         WebDriver driver = DriverFactory.getInstance().getDriver();
-        LandingPage landingPage = new LandingPage(driver);
-        MoveListPage moveListPage = landingPage.goToTopRatedMovies();
+        MovieListPage moveListPage = goToTopRatedMovies(driver);
         moveListPage.filterByGenre(genre);
         MoviePage moviePage = moveListPage.goToAnyMovie();
         assertThat(moviePage.getGenres(),hasItem(genre));
@@ -38,8 +35,7 @@ public class FilterTest extends FilterDataProvider {
         logger.info("Number Of Dates: " + numberOfDates);
 
         WebDriver driver = DriverFactory.getInstance().getDriver();
-        LandingPage landingPage = new LandingPage(driver);
-        MoveListPage moveListPage = landingPage.goToTopRatedMovies();
+        MovieListPage moveListPage = goToTopRatedMovies(driver);
         moveListPage.sortBy(filter);
         assertThat(moveListPage.datesAreInAscendingOrder(numberOfDates),is(true));
     }
