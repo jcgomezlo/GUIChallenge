@@ -3,11 +3,10 @@ import io.qameta.allure.Feature;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.ActorPage;
 import pages.LandingPage;
-import pages.MoveListPage;
+import pages.MovieListPage;
 import pages.MoviePage;
 import utils.DriverFactory;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -22,8 +21,7 @@ public class ActorTest extends Hooks {
         logger.info("Validate Acting Timeline test initiated ..");
 
         WebDriver driver = DriverFactory.getInstance().getDriver();
-        LandingPage landingPage = new LandingPage(driver);
-        MoveListPage moveListPage = landingPage.goToTopRatedMovies();
+        MovieListPage moveListPage = goToTopRatedMovies(driver);
         MoviePage moviePage = moveListPage.goToAnyMovie();
         String movieTitle = moviePage.getTitle();
         logger.info("Movie title " +  movieTitle);

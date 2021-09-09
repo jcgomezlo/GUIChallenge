@@ -49,11 +49,11 @@ public class LandingPage extends BasePage {
     }
 
     @Step("Go to top rated movies")
-    public MoveListPage goToTopRatedMovies(){
+    public MovieListPage goToTopRatedMovies(){
         logger.info("Going to top rated movies ...");
         Actions builder = new Actions(driver);
         builder.moveToElement(movieButton).perform();
         topRatedButton.click();
-        return new MoveListPage(driver);
+        return new MovieListPage(driver);
     }
 }

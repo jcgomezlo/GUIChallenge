@@ -1,21 +1,16 @@
 package dataproviders;
 
-import io.qameta.allure.Allure;
-import io.qameta.allure.Attachment;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.logging.LogEntries;
-import org.openqa.selenium.logging.LogType;
 import org.testng.ITestResult;
-import org.testng.Reporter;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import pages.LandingPage;
+import pages.MovieListPage;
 import utils.BrowserFactory;
 import utils.DriverFactory;
 import utils.Utilities;
 import utils.reader.PropertiesReader;
 
-import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 
@@ -40,6 +35,11 @@ public class Hooks {
             Utilities.captureScreenshot(DriverFactory.getInstance().getDriver(), result.getName());
         }
         DriverFactory.getInstance().closeBrowser();
+    }
+
+    public MovieListPage goToTopRatedMovies(WebDriver driver){
+        LandingPage landingPage = new LandingPage(driver);
+        return landingPage.goToTopRatedMovies();
     }
 
 
