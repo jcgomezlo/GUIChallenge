@@ -1,3 +1,5 @@
+package dataproviders;
+
 import io.qameta.allure.Allure;
 import io.qameta.allure.Attachment;
 import org.apache.logging.log4j.Logger;
@@ -27,7 +29,6 @@ public class Hooks {
         driver.manage().window().maximize();
         driver.navigate().to("https://www.themoviedb.org");
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
     }
 
     @AfterMethod

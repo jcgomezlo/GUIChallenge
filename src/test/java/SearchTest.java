@@ -1,12 +1,11 @@
+import dataproviders.Hooks;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.LandingPage;
-import pages.LoginPage;
 import pages.SearchPage;
-import pages.UserPage;
 import utils.DriverFactory;
 
 public class SearchTest extends Hooks {

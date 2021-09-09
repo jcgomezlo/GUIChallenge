@@ -1,6 +1,8 @@
 package pages;
 
 import io.qameta.allure.Step;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -9,6 +11,8 @@ import org.openqa.selenium.support.PageFactory;
 
 
 public class LandingPage extends BasePage {
+
+    private static final Logger logger = LogManager.getLogger(LandingPage.class);
 
     @FindBy(xpath = "//ul[contains(@class,'primary')]//a[normalize-space()='Login']")
     private WebElement goToLoginButton;
@@ -33,6 +37,7 @@ public class LandingPage extends BasePage {
     @Step("Go to login")
     public LoginPage goToLogin(){
         goToLoginButton.click();
+        logger.info("Going to login page ...");
         return new LoginPage(driver);
     }
 

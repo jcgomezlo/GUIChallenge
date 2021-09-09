@@ -24,7 +24,7 @@ public class BrowserFactory {
             return new EdgeDriver();
         } else {
             Logger.error("Invalid driver property");
-            throw new IllegalArgumentException("asd");
+            throw new IllegalArgumentException("Not recognized browser");
         }
     }
 }
