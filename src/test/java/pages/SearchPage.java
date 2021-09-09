@@ -19,7 +19,7 @@ public class SearchPage extends BasePage{
 
     @Step("Get title of first result")
     public String getTitleOfResult(int number){
-        By element = By.xpath("(//div[contains(@class,'search_results movie')]//div[contains(@class,'card v4 tight')]//h2)["+(number+1)+"]");
+        By element = By.cssSelector("div[class *= 'search_results movie'] div[class *= 'card']:nth-child("+(number+1)+") h2");
         String titleText = driver.findElement(element).getText();
         logger.info("Title Text: " + titleText);
         return titleText;

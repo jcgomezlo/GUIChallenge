@@ -14,19 +14,19 @@ public class LandingPage extends BasePage {
 
     private static final Logger logger = LogManager.getLogger(LandingPage.class);
 
-    @FindBy(xpath = "//ul[contains(@class,'primary')]//a[normalize-space()='Login']")
+    @FindBy(css = "header a[href='/login']")
     private WebElement goToLoginButton;
 
     @FindBy(id = "inner_search_v4")
     private WebElement searchBar;
 
-    @FindBy(xpath = "//input[@value='Search']")
+    @FindBy(css = "div.search input[value='Search']")
     private WebElement searchButton;
 
-    @FindBy(xpath = "(//div[@class='sub_media']/div/ul/li/a)[1]")
+    @FindBy(css = "div.nav_wrapper ul > li:first-child a")
     private WebElement movieButton;
 
-    @FindBy(xpath = "//a[@href='/movie/top-rated']")
+    @FindBy(css = "a[href='/movie/top-rated']")
     private WebElement topRatedButton;
 
     public LandingPage(WebDriver driver) {

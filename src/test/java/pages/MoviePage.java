@@ -15,13 +15,13 @@ import java.util.List;
 public class MoviePage extends BasePage {
     private static final Logger logger = LogManager.getLogger(MoviePage.class);
 
-    @FindBy(xpath = "//span[@class='genres']/a")
+    @FindBy(css = "span.genres > a")
     List<WebElement> genres;
 
-    @FindBy(xpath = "//section[@class='header poster']//h2/a")
+    @FindBy(css = "section[class *= 'header poster'] h2 > a")
     WebElement title;
 
-    @FindBy(xpath = "//ol[@class='people scroller']/li")
+    @FindBy(css = "ol[class = 'people scroller'] > li.card")
     List<WebElement> cast;
 
     public MoviePage(WebDriver webDriver) {
