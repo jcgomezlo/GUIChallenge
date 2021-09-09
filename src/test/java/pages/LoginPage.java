@@ -59,4 +59,6 @@ public class LoginPage extends BasePage {
         logger.info("Number of error messages " + numberErrors );
         return numberErrors;
     }
+
+
 }

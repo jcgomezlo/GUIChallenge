@@ -1,6 +1,8 @@
 package pages;
 
 import io.qameta.allure.Step;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -23,6 +25,8 @@ import static utils.Utilities.getDatesFromText;
 import static utils.Utilities.isSorted;
 
 public class MoveListPage extends BasePage{
+
+    private static final Logger logger = LogManager.getLogger(MoveListPage.class);
 
     @FindBy(xpath = "(//div[@class='content']/div/div[@class='filter_panel card closed'])[1]")
     WebElement filtersButton;
@@ -64,6 +68,7 @@ public class MoveListPage extends BasePage{
 
     @Step("Filter results by some parameter")
     public void filterByGenre(String genre){
+        logger.info("Started filter by genre " + genre);
         filtersButton.click();
         clickGenreFilterButton(genre);
         searchFilterButton.click();
@@ -72,6 +77,7 @@ public class MoveListPage extends BasePage{
 
     @Step("Go to movie page")
     public MoviePage goToMovie(int number){
+        logger.info("Going to movie page");
         filterResult.get(number).click();
         return new MoviePage(driver);
     }
@@ -89,6 +95,7 @@ public class MoveListPage extends BasePage{
 
     @Step("Sort results by some filter")
     public void sortBy(String query) {
+        logger.info("Started sort  " + query);
         clickSort(query);
         searchSmallButton.click();
         waitForSearch();
@@ -96,10 +103,12 @@ public class MoveListPage extends BasePage{
 
     @Step("Check if dates are in ascending order")
     public boolean datesAreInAscendingOrder(String numberOfDates){
+        logger.info("Getting dates ...");
         By element = By.xpath("(//div[@class='card style_1']//p)[position() <= "+ numberOfDates +"]");
         List<WebElement> datesElement =  driver.findElements(element);
-        System.out.println(datesElement.size());
-        return isSorted(getDatesFromText(datesElement));
+        List<LocalDate> dates = getDatesFromText(datesElement);
+        logger.info("Dates: " + dates);
+        return isSorted(dates);
     }
 
 
